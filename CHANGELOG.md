@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.4
+
+PTC hot-switch fix.
+
+- Read the live tool face with `tools.schemas(agent)` instead of
+  `tools.schemas(agent.ctx)`. The latter returned the host tool set only, so a
+  PTC switch looked like a native face and never exposed `run_code`.
+- After `recompose`, verify the expected PTC/native face before committing the
+  switch; roll back to `standard` if it is absent.
+- Rebuild the `request/header` tool-history baseline with `reason: series` so
+  the next request does not project the new tools as deferred additions.
+- Add `agent/pre-step` and `agent/request-error` self-healing for sessions
+  already stuck in the all-deferred state.
+- Verified in an isolated `test` profile: `standard -> ptc` made a real request
+  using `run_code`; `ptc -> standard` made a real request with native tools;
+  neither direction produced the provider's all-deferred error.
+
 ## 0.1.3
 
 Installation and metadata release; no behaviour change in the plugin itself.

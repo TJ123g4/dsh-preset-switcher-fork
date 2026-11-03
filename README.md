@@ -14,6 +14,35 @@
 <img width="656" height="350" alt="image" src="https://github.com/user-attachments/assets/c9ecdb1a-446e-48a8-825d-a3e495ff773b" />
 
 
+## PTC hot-switch fix (0.1.4)
+
+Switching an already-started session to a PTC preset used to leave the provider
+with an all-deferred tool table:
+
+```text
+at least one tool must have defer_loading=false.
+All tools cannot be deferred.
+```
+
+The host half now:
+
+- projects the tool face with `tools.schemas(agent)` (the Agent/scope), not
+  `tools.schemas(agent.ctx)`;
+- after `recompose`, verifies that the expected PTC (`run_code`) or native face
+  is present;
+- rebuilds the `request/header` tool-history baseline with `reason: series`, so
+  the next request no longer folds the new tools as deferred additions;
+- rolls back to `standard` if the requested face does not appear.
+
+The self-heal hooks (`agent/pre-step`, `agent/request-error`) also repair a
+session that was already stuck in the all-deferred state.
+
+Verified in an isolated `test` profile (not the author's live session):
+
+- `standard -> ptc`: the next real request succeeded and used `run_code`;
+- `ptc -> standard`: the next real request succeeded with native tools;
+- no `defer_loading` provider error occurred in either direction.
+
 ## 概述
 
 DSH Web 插件：在**任何时候**切换当前会话的代理预设（模式），包括对话已经开始之后 — 原生 UI 不允许这样做（"已开始的对话的代理预设已固定"）。
