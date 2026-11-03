@@ -74,7 +74,7 @@ DSH Web 插件：在**任何时候**切换当前会话的代理预设（模式�
 
 ```powershell
 # 方式一（推荐）：直接从 GitHub 仓库安装
-dsh plugin --profile web add github:neutronslime/dsh-preset-switcher-fork
+dsh plugin --profile web add github:TJ123g4/dsh-preset-switcher-fork#fix/ptc-hot-switch
 
 # 方式二：克隆到你自己选的目录，再从该目录安装（不依赖作者机器上的任何路径）
 git clone https://github.com/neutronslime/dsh-preset-switcher-fork.git
@@ -134,7 +134,7 @@ Requires DSH 0.2.1-rc.2 (or another 0.2.x build). The plugin is plain JavaScript
 
 ```powershell
 # Option 1 (recommended): install straight from the GitHub repository
-dsh plugin --profile web add github:neutronslime/dsh-preset-switcher-fork
+dsh plugin --profile web add github:TJ123g4/dsh-preset-switcher-fork#fix/ptc-hot-switch
 
 # Option 2: clone into a directory of your choosing, then install from it
 git clone https://github.com/neutronslime/dsh-preset-switcher-fork.git
