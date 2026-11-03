@@ -18,7 +18,9 @@ PTC hot-switch fix.
   already stuck in the all-deferred state.
 - Verified in an isolated `test` profile: `standard -> ptc` made a real request
   using `run_code`; `ptc -> standard` made a real request with native tools;
-  neither direction produced the provider's all-deferred error.
+  `standard -> minimal` and `minimal -> cordis` also produced real responses; a
+  switch while a turn was running was refused and left the preset unchanged;
+  no all-deferred or corrupt-log error occurred.
 
 ## 0.1.3
 

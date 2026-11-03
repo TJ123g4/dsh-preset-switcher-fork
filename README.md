@@ -44,7 +44,13 @@ Verified in an isolated `test` profile (not the author's live session):
 
 - `standard -> ptc`: the next real request succeeded and used `run_code`;
 - `ptc -> standard`: the next real request succeeded with native tools;
-- no `defer_loading` provider error occurred in either direction.
+- `standard -> minimal`: a real request succeeded (minimal intentionally has no
+  tool surface);
+- `minimal -> cordis`: a real request succeeded and cordis tools answered;
+- a switch attempted while a turn was running was refused with a `busy` error
+  and left the composition unchanged;
+- no `defer_loading` provider error and no corrupt-session error occurred in the
+  fixed version.
 
 ## 概述
 
