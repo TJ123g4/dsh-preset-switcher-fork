@@ -58,7 +58,7 @@ DSH Web 插件：在**任何时候**切换当前会话的代理预设（模式�
 
 ### 核心功能
 
-- **顶部下拉菜单**：会话标题操作栏中的「当前模式 ▾」按钮，列出所有预设（如 `standard`=标准模式、`code`=PTC 模式、`minimal`=极简模式、`cordis`=创造模式），用 ✓ 标记当前预设，点击即切换。
+- **顶部下拉菜单**：会话标题操作栏中的「当前模式 ▾」按钮，列出所有预设（如 `standard`=标准模式、`ptc`=PTC 模式、`minimal`=极简模式、`cordis`=创造模式），用 ✓ 标记当前预设，点击即切换。
 - **失效预设修复**：如果会话记录的预设已被删除（自定义预设被移除），恢复将失败导致会话不可用。下拉菜单中的「修复失效模式会话」操作（及 `repair` API）会扫描所有会话日志并重写失效引用 — 最后一个 `agent-preset/selected` 事件，否则是标题 — 重置为默认预设，操作前自动备份日志并跳过活跃会话。切换未加载的会话时若引用失效也会自动修复。
 - **受控路由**：`POST /preset-switch/api`，参数 `{ method: 'list' | 'switch' | 'repair', sessionId, presetId, target? }`（回环/可信主机限制，与 dsh-sounds 相同）。
 
@@ -118,7 +118,7 @@ DSH web plugin: switch the current session's agent preset (mode) at **any time**
 
 ### Features
 
-- **Header dropdown**: a "当前模式 ▾" button in the session header action row lists every preset (e.g. `standard`=标准模式, `code`=PTC 模式, `minimal`=极简模式, `cordis`=创造模式), marks the session's current one with ✓, and switches on click.
+- **Header dropdown**: a "当前模式 ▾" button in the session header action row lists every preset (e.g. `standard`=标准模式, `ptc`=PTC 模式, `minimal`=极简模式, `cordis`=创造模式), marks the session's current one with ✓, and switches on click.
 - **Stale-preset repair**: if a session's recorded preset was deleted (a custom preset removed), resume fails and the session becomes unusable. The dropdown's "修复失效模式会话" action (and `repair` API) scans every session log and rewrites stale references — the last `agent-preset/selected` event, else the header — to the default preset, backing up the log first and skipping live sessions. Switching a not-loaded session whose reference is stale auto-repairs it too.
 - **Fenced route**: `POST /preset-switch/api` with `{ method: 'list' | 'switch' | 'repair', sessionId, presetId, target? }` (loopback/trusted-host fence, same as dsh-sounds).
 
