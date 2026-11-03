@@ -16,6 +16,10 @@ PTC hot-switch fix.
   composition never changes in the middle of a running turn.
 - Add `agent/pre-step` and `agent/request-error` self-healing for sessions
   already stuck in the all-deferred state.
+- Keep the dropdown label in sync with the last recorded
+  `agent-preset/selected` event; a blank session can compose before the live
+  binding reflects the switch, which previously left the header saying PTC
+  while the button still said standard.
 - Verified in an isolated `test` profile: `standard -> ptc` made a real request
   using `run_code`; `ptc -> standard` made a real request with native tools;
   `standard -> minimal` and `minimal -> cordis` also produced real responses; a
