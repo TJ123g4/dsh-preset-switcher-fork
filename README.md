@@ -5,7 +5,8 @@
 > **Fork 说明**：上游 `jeffcwj/dsh-preset-switcher` 最后提交是 2026-08-17，未适配
 > DSH 0.2.1。该版本移除了宿主 `webRuntime` 服务（现在提供 `webApp`），而上游插件
 > `inject: ['webServer', 'webRuntime']` 因此永远不挂载、`/preset-switch/api` 404，
-> 前端下拉菜单随之失效。本 fork 只做兼容修复（见 CHANGELOG.md），功能与上游一致。
+> 前端下拉菜单随之失效。本 fork 先做兼容修复，再补齐 PTC/模式热切换修复（见
+> CHANGELOG.md 0.1.4）。
 > 已在 **DSH 0.2.1-rc.2** 上验证：插件正常挂载，`list` / `switch` / `repair` 三个方法
 > 均按预期返回。安装方式见下方「安装 / 更新」，一条 `dsh plugin add` 即可。
 
@@ -108,7 +109,8 @@ MIT
 
 > **English** | [中文](#概述)
 
-> **Fork note**: upstream `jeffcwj/dsh-preset-switcher` was last committed on 2026-08-17 and does not run on DSH 0.2.1: that release dropped the host `webRuntime` service (the web runtime now provides `webApp`), so the upstream `inject: ['webServer', 'webRuntime']` never mounts, `/preset-switch/api` answers 404, and the header dropdown is dead. This fork is the compatibility fix only (see CHANGELOG.md) — same features as upstream. Verified on **DSH 0.2.1-rc.2**: the plugin mounts and `list` / `switch` / `repair` all answer as expected. Install is a single `dsh plugin add`; see "Install / update" below.
+> **Fork note**: upstream `jeffcwj/dsh-preset-switcher` was last committed on 2026-08-17 and does not run on DSH 0.2.1: that release dropped the host `webRuntime` service (the web runtime now provides `webApp`), so the upstream `inject: ['webServer', 'webRuntime']` never mounts, `/preset-switch/api` answers 404, and the header dropdown is dead. This fork keeps the compatibility fix and adds the PTC/mode hot-switch repair
+(see CHANGELOG.md 0.1.4). Verified on **DSH 0.2.1-rc.2**: the plugin mounts and `list` / `switch` / `repair` all answer as expected. Install is a single `dsh plugin add`; see "Install / update" below.
 
 ---
 
