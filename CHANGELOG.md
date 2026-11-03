@@ -9,8 +9,11 @@ PTC hot-switch fix.
   PTC switch looked like a native face and never exposed `run_code`.
 - After `recompose`, verify the expected PTC/native face before committing the
   switch; roll back to `standard` if it is absent.
-- Rebuild the `request/header` tool-history baseline with `reason: series` so
-  the next request does not project the new tools as deferred additions.
+- Rebuild the `request/header` tool-history baseline with `reason: series` only
+  inside `agent/pre-step`, never from the switch route. Writing it at switch
+  time produces invalid `request/header is outside an open turn` logs.
+- Refuse a switch while the Agent is not idle (`agent.status !== 'idle'`), so a
+  composition never changes in the middle of a running turn.
 - Add `agent/pre-step` and `agent/request-error` self-healing for sessions
   already stuck in the all-deferred state.
 - Verified in an isolated `test` profile: `standard -> ptc` made a real request

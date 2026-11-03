@@ -30,8 +30,11 @@ The host half now:
   `tools.schemas(agent.ctx)`;
 - after `recompose`, verifies that the expected PTC (`run_code`) or native face
   is present;
-- rebuilds the `request/header` tool-history baseline with `reason: series`, so
-  the next request no longer folds the new tools as deferred additions;
+- rebuilds the `request/header` tool-history baseline with `reason: series` only
+  inside `agent/pre-step` (not at switch time, which would write an invalid
+  `request/header is outside an open turn`);
+- refuses a switch while the Agent is running (`agent.status !== 'idle'`), so a
+  composition never changes in the middle of a turn;
 - rolls back to `standard` if the requested face does not appear.
 
 The self-heal hooks (`agent/pre-step`, `agent/request-error`) also repair a
